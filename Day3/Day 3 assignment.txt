@@ -1,0 +1,430 @@
+Q.2 Move files from one folder t respective folders?
+
+-------------------------------------------------------------------------------------------------------------------
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ cd day3assignment
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ touch abc.txt def.txt ghi.txt jkl.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls
+abc.txt  def.txt  ghi.txt  jkl.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ basename -a -s .txt *
+abc
+def
+ghi
+jkl
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mkdir abc def ghi jkl
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls
+abc/  abc.txt  def/  def.txt  ghi/  ghi.txt  jkl/  jkl.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mv abc.txt abc
+abc/     abc.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mv abc.txt abc
+abc/     abc.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mv abc.txt abc/
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls
+abc/  def/  def.txt  ghi/  ghi.txt  jkl/  jkl.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls abc
+abc.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mv def.txt def/
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls def
+def.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mv ghi.txt ghi/
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls ghi
+ghi.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mv jkl.txt jkl/
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls jkl
+jkl.txt
+---------------------------------------------------------------------------------------------------------------------------
+
+Q.3 Append current date to all log file name which has extension .log.1 from a folder?
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ mkdir logfiles
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ ls
+abc/  def/  ghi/  jkl/  logfiles/
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment
+$ cd logfiles
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ touch abc.log.1 def.log.1 ghi.log.1 jkl.log.1 mno.log.1
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ ls
+abc.log.1  def.log.1  ghi.log.1  jkl.log.1  mno.log.1
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ basename -a -s .log.1 *
+abc
+def
+ghi
+jkl
+mno
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ date
+Sat Apr  2 19:58:01 IST 2022
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ date +'%d%m%y'
+020422
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ mydate=$(date +'%d%m%y')
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ mv abc.log.1 abc-$mydate.log
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ ls
+abc-020422.log  def.log.1  ghi.log.1  jkl.log.1  mno.log.1
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ mv def.log.1 def-$mydate.log
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ ls
+abc-020422.log  def-020422.log  ghi.log.1  jkl.log.1  mno.log.1
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ mv ghi.log.1 ghi-$mydate.log
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ ls
+abc-020422.log  def-020422.log  ghi-020422.log  jkl.log.1  mno.log.1
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ mv jkl.log.1 jkl-$mydate.log
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ ls
+abc-020422.log  def-020422.log  ghi-020422.log  jkl-020422.log  mno.log.1
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ mv mno.log.1 mno-$mydate.log
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/day3assignment/logfiles
+$ ls
+abc-020422.log  def-020422.log  ghi-020422.log  jkl-020422.log  mno-020422.log
+
+--------------------------------------------------------------------------------------------------------------
+
+Q. 4 Archive the files from /var/log folder which have modified 7 days ago and move it to your backup folder? (Window dont have /var/log folder so I used my folder)
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ find ./ -maxdepth 1 -mtime +7 -type f
+./b.txt
+./c.txt
+./sample.txt
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ mkdir backup
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ find ./ -maxdepth 1 -mtime +7 -type f | xargs tar -czvPf ./backup/backup_$(date +%F).tar.gz
+./b.txt
+./c.txt
+./sample.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ ls
+b.txt  backup/  c.txt  data.csv  day3assignment/  mydata/  newfolder/  sample.txt  sample1.txt
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ cd backup
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment/backup
+$ ls
+backup_2022-04-05.tar.gz
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Q.5. Print last 4 frequently access urls count in sorted order from /var/log/httpd/access.log?
+
+91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment
+$ cat access.log | awk '{print $7}' | sort -n | uniq -c | sort -nr | head -4
+    199 /vendor.js
+    199 /scripts.js
+    199 /runtime.js
+    199 /favicon.ico
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Q.6. Print list of last 4 frequently access unique urls at particular hours from /var/log/httpd/access.log?
+
+$ grep "26/Oct/2019:[0-9][0-9]:[0-9][0-9]" access.log | awk '{print $7}' | uniq -c
+   1 /wp-login.php
+   1 /ads.txt
+   1 /
+   1 /robots.txt
+   1 /ads.txt
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.7. Print list of web response code count in the unique sorted order at specific hours?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ cat access.log | awk '{print $9}' | sort -n | uniq -c | sort -nr
+  3176 200
+    26 304
+     8 206
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 8 Print list of 10 unique sorted client IP from /var/log/httpd/access.log?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ awk '{ print $1}' access.log | sort | uniq -c | sort -nr | head -n 10 
+ 383 10.56.2.2
+ 345 10.56.19.3
+ 323 10.56.21.2
+ 285 10.56.6.4
+ 283 10.56.1.3
+ 261 10.56.0.3
+ 251 10.56.22.3
+ 242 10.56.4.2
+ 214 10.56.3.4
+ 213 10.56.10.2
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.9 Check if a folder exist or not. If it's not present create it?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ [ ! -d "mydir" ] && echo "Directory mydir does not exists."
+Directory mydir does not exists.
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ mkdir mydir
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ ll   
+total 1632
+-rw-r--r--@ 1 ravibele  staff   7.3K Apr  6 20:52 Day 3 assignment.txt
+-rw-r--r--@ 1 ravibele  staff   807K Apr  6 20:40 access.log
+drwxr-xr-x  2 ravibele  staff    64B Apr  6 20:55 mydir
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 10 Execute command "hello" and "ls" and check it's execution status and print whether command executed successful or not?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  hello
+zsh: command not found: hello
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ echo $?
+127
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  ls
+Day 3 assignment.txt access.log           mydir
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ echo $?
+0
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 11 Set environment usersecret ="dH34xJaa23" if already not set?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  if [ -z ${usersecret+x} ]; then echo "usersecret is not set"; else echo "var is set to '$usersecret'"; fi
+usersecret is not set
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ export usersecret="dH34xJaa23"
+               
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ if [ -z ${usersecret+x} ]; then echo "usersecret is not set"; else echo "var is set to '$usersecret'"; fi
+var is set to 'dH34xJaa23'
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 12 Find a word "systemed" from all log files in the folder /var/log/ and print number of occurrence more than ) against each files?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ grep -c -R system /var/log | awk -F: '$NF+0 > 0'
+/var/log/powermanagement/2022.03.29.asl:29
+/var/log/powermanagement/2022.03.28.asl:26
+/var/log/powermanagement/2022.04.02.asl:26
+/var/log/powermanagement/2022.03.23.asl:29
+/var/log/powermanagement/2022.04.03.asl:23
+/var/log/powermanagement/2022.04.01.asl:36
+/var/log/powermanagement/2022.03.31.asl:50
+/var/log/powermanagement/2022.03.25.asl:46
+/var/log/powermanagement/2022.04.04.asl:64
+/var/log/powermanagement/2022.04.05.asl:46
+/var/log/powermanagement/2022.03.24.asl:41
+/var/log/powermanagement/2022.03.30.asl:38
+/var/log/powermanagement/2022.03.26.asl:44
+/var/log/powermanagement/2022.04.06.asl:45
+/var/log/powermanagement/2022.03.27.asl:33
+/var/log/asl/AUX.2022.03.31/187480:1
+/var/log/asl/AUX.2022.03.31/187605:263
+/var/log/asl/BB.2023.02.28.G80.asl:2
+/var/log/asl/2022.04.01.G80.asl:2
+/var/log/asl/2022.04.03.G80.asl:490
+/var/log/asl/AUX.2022.04.04/195561:1
+/var/log/asl/AUX.2022.04.04/201633:2
+/var/log/asl/AUX.2022.04.04/195563:15
+/var/log/asl/2022.04.02.G80.asl:15
+/var/log/asl/Logs/aslmanager.20220405T010420+0530:47
+/var/log/asl/Logs/aslmanager.20220404T213513+0530:42
+/var/log/asl/Logs/aslmanager.20220406T090007+0530:51
+/var/log/asl/BB.2023.03.31.G80.asl:1
+/var/log/asl/2022.04.06.G80.asl:558
+/var/log/asl/2022.03.30.G80.asl:17
+/var/log/asl/2022.04.04.G80.asl:624
+/var/log/asl/2022.03.31.G80.asl:2
+/var/log/asl/2022.04.05.G80.asl:539
+/var/log/asl/BB.2023.04.30.G80.asl:1
+/var/log/asl/AUX.2022.04.01/187766:1
+/var/log/asl/AUX.2022.04.06/219501:1
+/var/log/asl/BB.2023.01.31.G80.asl:2
+/var/log/DiagnosticMessages/2022.04.02.asl:39
+/var/log/DiagnosticMessages/2022.04.03.asl:65
+/var/log/DiagnosticMessages/2022.04.01.asl:40
+/var/log/DiagnosticMessages/2022.03.31.asl:50
+/var/log/DiagnosticMessages/2022.04.04.asl:110
+/var/log/DiagnosticMessages/2022.04.05.asl:85
+/var/log/DiagnosticMessages/2022.04.06.asl:35
+/var/log/system.log:1675
+/var/log/wifi.log:15
+/var/log/Perimeter81/Perimeter81d.log:204
+/var/log/wifi-04-05-2022__11:21:40.639.log:247
+/var/log/install.log:1674
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 13 Create process list table displays process Id, paren process Id, command name, % of memory consumption, % of cpu utilization?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ ps xao pid,ppid,comm,%mem,%cpu
+  PID  PPID COMM             %MEM  %CPU
+    1     0 /sbin/launchd     0.1   0.0
+   91     1 /usr/sbin/syslog  0.0   0.0
+   92     1 /usr/libexec/Use  0.0   0.0
+   94     1 /bin/sh           0.0   0.0
+   96     1 /System/Library/  0.0   0.0
+   97     1 /usr/libexec/kex  0.0   0.0
+   98     1 /System/Library/  0.0   0.0
+   99     1 /System/Library/  0.0   0.0
+  102     1 /bin/bash         0.0   0.0
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 14 Data analysis / manipulation (Awk)?
+
+i)Print employee name and totalpay who has basepay greater than 10000?
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  awk '$4 > 10000' data.csv | awk '{print $2,"         ",$7}'
+EmployeeName           TotalPay
+NATHANIEL           567595
+GARY           538909
+ALBERT           335279
+CHRISTOPHER           332343
+PATRICK           326373
+DAVID           316285
+ALSON           315981
+DAVID           307899
+JOANNE           302377
+PATRICIA           297608
+EDWARD           294580
+
+ii) What is the aggregate totalpay of employee whose jobTitle is "CAPTAIN"?
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  cat data.csv | awk '{if ( $3 == "CAPTAIN" ) print $7}'| awk '{ SUM_SALARY += $1 } END { print SUM_SALARY }' 
+1171796
+
+
+iii) Print jobtitle and overtimepay who has overtimepay between 7000 and 10000?
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ cat data.csv | awk '{if ( $5 > 7000 && $5 < 10000 ) print $3}'
+DEPUTYCHIEF
+ASSTDEPUTY
+
+iv) Print average basepay?
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  cat data.csv| awk '{ sum += $4 } END { print(sum/(NR-1))}'
+172333
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 15 Find the difference between original file and updated file. Apply changes to the original file?
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ mkdir original updated
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ echo "mydata\nyourdata" > original-file.sh
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ cat original-file.sh                                                        
+mydata
+yourdata
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ cd ../updated 
+      
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$ echo "superdata\nkirandata" > updated-file.sh
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  cat updated-file.sh 
+superdata
+kirandata
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  diff -u original/original-file.sh updated/updated-file.sh 
+--- original/original-file.sh   2022-04-06 21:31:29.000000000 +0530
++++ updated/updated-file.sh     2022-04-06 21:32:24.000000000 +0530
+@@ -1,2 +1,2 @@
+-mydata
+-yourdata
++superdata
++kirandata
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  cp original/original-file.sh original/original-backup.sh   
+ 
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  comm -1 -3 original/original-file.sh updated/updated-file.sh > original/original-backup.sh 
+
+ 91940@LAPTOP-BEPC3SST MINGW64 ~/Desktop/assignment  
+$  cat original/original-backup.sh                                                           
+superdata
+kirandata
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
